@@ -1,0 +1,57 @@
+install node.js
+install andular cli
+
+
+if ng commands not working in VS code then open the powershell/terminal as admin and execute 
+set-executionpolicy remotesigned
+command. ng commands start working in VS code
+
+
+ng new <app-name>
+
+ng serve	--- to build/run the project, localhost:4200
+
+ng generate component <component-name>
+ng g c <component-name>
+
+ng g c <component-name> --inline-style
+ng g c <component-name> --inline-template
+ng g c <component-name> --inline-style --inline-template
+
+ng g module <module-name>
+
+
+to use component in another component
+======= let suppose we have user-list component and we want to use it 
+	in AppComponent, import and declare in import bracket of
+	required component ================
+
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { UserListComponent } from './user-list/user-list.component';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet, UserListComponent],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
+})
+export class AppComponent {
+  title = 'blog';
+}
+
+
+=================== then use the user-list component in .html file by its selector name
+
+
+ ======= to create not a standalone component ======
+--- standalone false component can only be create if there is a module otherwise it'll give error for module not found or something else ---
+
+ng g c <component-name> --standalone false
+
+-- have to export the non-standalone component below the `imports` tag from its module to make it available over the whole app ----
+
+then have to import in app.component.ts file or other components file where we want to use it 
+
+
